@@ -19,6 +19,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{cite}
+\usepackage[usenames,dvipsnames]{color}
 
 \journal{Nuclear Nuclear Fusion}
 \begin{document}
@@ -36,7 +37,9 @@
 %\abstract{The accelerator based in-situ materials serveilance diagnostic (AIMS) was recently installed in 2012 to demonstrate the novel application of ion beam analysis to plasma materials interaction (PMI) science in the Alcator C-Mod Tokamak.  The first in-situ, spatially and temporally resolved measurements of material surface erosion and deposition are presented.  }
 
 \begin{abstract}
-The Accelerator Based In-situ Materials Surveillance (AIMS) diagnostic was recently developed to demonstrate the novel application of ion beam analysis (IBA) to in-vessel studies of plasma materials interaction in Alcator C-Mod. The first quantitative, in-situ, time-resolved, and spatially resolved measurements of low-Z surface erosion and deposition in a magnetic fusion device is presented. The AIMS diagnostic injects a 900~keV deuterium ion beam into the tokamak's vacuum vessel between plasma discharges while the magnetic fields are used to steer the ion beam to plasma facing component (PFC) surfaces. Spectroscopic analysis of neutrons and gamma rays from the induced nuclear reactions provides a quantitative, spatially resolved map of the PFC surface composition. Since AIMS is sensitive to low-Z elements and C-Mod uses boronization to improve plasma performance, the evolution of boron content on PFCs is used to directly study erosion and deposition of surfaces. AIMS analysis of 18 lower single null I-mode discharges show a net boron deposition rate of $6\pm2$~nm/s on the inner wall while subsequent inner wall limited discharges did not show significant changes in boron. This suggests extremely high net deposition rates of $\sim$18 cm per year of plasma exposure are possible which depend strongly on the plasma conditions. Ex-situ IBA was also performed on the same PFCs after removal from C-Mod, successfully validating the AIMS technique. These measurements also show that the boron content on the inner wall varied toroidally and poloidally from 0 to 3000 nm, demonstrating the importance of the spatial resolution provided by AIMS and the sensitivity of PFCs to B-field alignment. AIMS is now being upgraded for operation in 2014 and we anticipate new results correlating the evolution of PFC surfaces to plasma configuration and RF heating and current drive scenarios.
+
+The Accelerator Based In-situ Materials Surveillance (AIMS) diagnostic was recently developed to demonstrate the novel application of ion beam analysis (IBA) to in-vessel studies of plasma materials interaction in Alcator C-Mod. The AIMS diagnostic injects a 900 keV deuterium ion beam into the tokamak's vacuum vessel between plasma discharges while magnetic fields are used to steer the ion beam to plasma facing component (PFC) surfaces. Spectroscopic analysis of neutrons and gamma rays from the induced nuclear reactions provides a quantitative, spatially resolved map of the PFC surface composition that includes boron (B) and deuterium (D) content. Since AIMS is sensitive to low-Z elements and C-Mod regularly boronizes PFCs, the evolution of B and D on PFCs can be used to directly study erosion, deposition, and fuel retention in response to plasma operations and wall condition processes. AIMS analysis of 18 lower single null I-mode discharges show a net boron deposition rate of $6\pm2$~nm/s on the inner wall while subsequent inner wall limited discharges and a disruption did not show significant changes in B. Measurements of D content showed relative changes of $>$2.5 following a similar trend. This suggests high D retention rates and net B deposition rates of $\sim$18 cm/year of plasma exposure are possible and depend strongly on the plasma conditions. Ex-situ IBA was also performed on the same PFCs after removal from C-Mod, successfully validating the AIMS technique. These IBA measurements also show that the B content on the inner wall varied toroidally and poloidally from 0-3000 nm, demonstrating the importance of the spatial resolution provided by AIMS and the sensitivity of PFCs to B-field alignment.
+
 \end{abstract}
 
 \begin{keyword}
@@ -49,654 +52,82 @@ The Accelerator Based In-situ Materials Surveillance (AIMS) diagnostic was recen
 
 \end{frontmatter}
 
+%==============================================================================
+% Introduction
+%==============================================================================
+
 \section{Introduction}
-\begin{itemize}
-	\item PMI is important but understudied
-	\item AIMS was developed to address this issue
-	\item AIMS is directly applicable to studying erosion of low-Z
-	\item All current tokamaks with High-Z PFCs require low-Z conditioning to prevent core impurities and achieve $H_{98}\sim 2$
-	\item Degradation of plasma performance appears to be correlated plasma exposure time and localized erosion of B outside of the divertor.
-	\item Low-Z coatings degrade too quickly for long pulse devices and cannot be applied in steady state devices.
-	\item Low-Z coatings are shown to work well, but have never been well characterized, especially on the relevant timescales of their erosion.
-	\item Boron erosion is an important proxy for studying the formation of high-Z sources 
-\end{itemize}
+\label{sec:Intro}
+Plasma materials interactions (PMI) present one the most significant engineering challenges for reactor-scale fusion devices. PMI however are difficult to study in laboratory tokamaks because they typically operate in short pulses with varied plasma conditions and provide little or no access to plasma facing components (PFC) under normal operating conditions. Due to this experimental constraint, it is often impossible to correlate plasma conditions to the effects of PMI thus leaving the dynamic changes in fusion materials severely understudied.  The recent development of the AIMS diagnostic \cite{RSIPaper} (section \ref{sec:AIMSOverview}), however, has shown that it is now possible to directly measure the retention of hydrogen isotopes from the plasma \cite{HartwigDRetention} and the erosion and deposition of low-Z materials (presented in section \ref{sec:BZNOverview}). These measurements provide new insight into the timescales and spatial variation of PMI effects on PFCs. 
 
-Plasma materials interactions (PMI) present one the most significant engineering challenges for reactor-scale fusion devices.  PMI however are difficult to study in laboratory tokamaks because they typically operate in short pulses with varied plasma conditions and provide little or no access plasma facing components (PFC) under normal operating conditions.  Due to this experimental constraint, it is often impossible to correlate plasma conditions to the effects of PMI, leaving fusion materials severely understudied despite the implications for fusion energy.  However, the recent development of the AIMS diagnostic \cite{RSIPaper} (section \ref{sec:AIMSOverview}) has shown that it now possible to directly measure the retention of hyrogen isoptes from the plasma \cite{HartwigDRetention} and the erosion and deposition of low-Z materials (section \ref{sec:BZNOverview}).
+%==============================================================================
+% Background on IBA and AIMS
+%==============================================================================
 
-\subsection{Ion beam analysis and AIMS}
+\section{Ion beam analysis and AIMS}
 \label{sec:AIMSOverview}
 
-A variety of ion beam analysis (IBA) techniques are commonly used to perform \textit{ex-situ} analysis on PFCs after they are removed from the tokamak. These IBA techniques serve an important function for studying long term aggregate PMI effects on PFC, however standard IBA methods are fundamentally limited because of their ex-situ nature.  Since occasions when PFCs can be removed are relatively rare, IBA studies are typically limited to the quantification of long term net effects of PMI, often over the course of hundreds to thousands of plasma discharges.  Since so many plasma discharges occur over the months of an experimental campaign, there is essentially no way to diagnose how one plasma configuration affects PFCs as compared to another.
+A variety of ion beam analysis (IBA) techniques are commonly used to perform \textit{ex-situ} analysis on PFCs after they are removed from the tokamak. IBA involves using ion beams to induce nuclear reactions, elastic collisions, or atomic excitations in materials.  Spectroscopic measurements of the reaction products are then used to identify and quantify isotopes in the material's surface. A comprehensive description of these established methods  can be found in \cite{tesmer1995handbook}.
 
-%Methods have been developed to increase the frequency of PFC access such as the Divertor materials evaluation system (DiMES) on the DIII-D tokamak \cite{wong1998divertor}.  This system allows samples to be inserted and removed from one location in the DIII-D divertor without a vacuum break.  DiMES can significantly shorten the timescale of surface analysis, however, it comes at the expense of spatial resolution.
+These IBA techniques serve an important function for studying long term aggregate PMI effects on PFC \cite{wright2011plasma} and were instrumental in validating the AIMS technique (section \ref{sec:PIGE}). However, there are only rare occasions when PFCs can be removed for analysis, IBA studies are typically limited to long term net effects of PMI, often over the course of hundreds to thousands of plasma discharges.  Since these timescales spanning months of an experimental campaign with varying plasma configurations, there is essentially no way to diagnose how one plasma configuration affects PFCs as compared to another.
 
 \begin{figure*}[h]
  \centering
   \includegraphics[width=140mm]{figures/AIMS_Overview_Schematic.png}
- \caption{Left: CAD model of the AIMS diagnostic installed on Alcator C-Mod.  Right: Schematic of AIMS components.  AIMS utilizes a radio frequency quadrupole (RFQ) accelerator produce a 900 keV D$^+$ beam to induce nuclear reactions on the surface of plasma facing components (PFC). Spectroscopy of the resulting neutrons and gamma rays allow for the identification and quantification of isotopes on PFC surfaces.  AIMS uses beam optics and toroidal field $B_\phi$ to steer the beam and achive spatially resolved measurements.}
+ \caption{Left: CAD model of the AIMS diagnostic installed on Alcator C-Mod.  Right: Schematic of AIMS components.  AIMS utilizes a radio frequency quadrupole (RFQ) accelerator produce a 900 keV D$^+$ beam to induce nuclear reactions on the surface of plasma facing components (PFC). Spectroscopy of the resulting neutrons and gamma rays allow for the identification and quantification of isotopes on PFC surfaces. AIMS uses beam optics and toroidal field $B_\phi$ to steer the beam and achive spatially resolved measurements.}
  \label{fig:AIMSOverviewSchematic0}
 \end{figure*}
 
-%The simple fact that PMI can only be studied as aggregate effects of hundreds or thousands of plasma discharges is a severe hindrance to PMI research, especially when a time resolution of a single discharge with spatial resolution is desired.  The accelerator-based in situ materials surveillance (AIMS) technique was developed specifically to address the diagnostic need for spatial and time resolved measurements simultaneously.
-%
-%To address this fundamental limitation of PMI diagnostics, a novel, in-situ, spatially resolved diagnostic has been developed.  
+A new diagnostic technique referred to as accelerator-based in situ materials surveillance (AIMS) was developed to simultaneously improve the spatial and temporal resolution of IBA measurements. AIMS utilizes a compact linear accelerator, gamma detectors, and neutron detectors to measure the evolution of PFC surface composition inside a magnetic confinement device. The technique is non-destructive to the PFCs, can access large fractions of the total PFC surface area, and is not disruptive to facility operations because it is designed to operate between plasma discharges. AIMS is essentially an IBA based in-situ diagnostic that is directly integrated with a tokamak. In addition, AIMS also provides spatially resolved measurements with approximately 2 cm spatial resolution on the shot-to-shot time scale by using the tokamak's magnetic field coils and DC supplies to steer and target the beam over a relatively large region of the plasma facing first wall \cite{RSIPaper}.  The development and implementation of the AIMS diagnostic, illustrated in figure \ref{fig:AIMSOverviewSchematic0}, was successfully implemented on Alcator C-Mod, making its first measurements during the 2012 experimental campaign. These measurements of boron erosion are presented in section (???????).
 
-To address this fundamental IBA limitation, a new diagnostic technique was developed and is referred to as accelerator-based in situ materials surveillance (AIMS). AIMS utilizes a compact linear accelerator, gamma detectors, and neutron detectors to measure the evolution of PFC surface composition inside a magnetic confinement device. The technique is nondestructive to the PFCs, can access large fractions of the total PFC surface area, and is not disruptive to facility operations because it is designed to operate between plasma discharges.   AIMS is essentially an IBA based in-situ diagnostic that is directly integrated with a tokamak. In addition, AIMS also provides spatially resolved measurements with approximately 2 cm spatial resolution on the shot-to-shot time scale by using the tokamak's magnetic field coils and DC supplies to steer and target the beam over a relatively large region of the plasma facing first wall \cite{RSIPaper}.  The development and implementation of the AIMS diagnostic, illustrated in figure \ref{fig:AIMSOverviewSchematic0}, was successfully implemented on Alcator C-Mod, making its first measurements during the 2012 experimental campaign.  A review of AIMS diagnostic and its implementation is presented in \cite{RSIPaper}. The first quantitative surface erosion and deposition measurements are presentented in the following sections
+%==============================================================================
+% Background on Boron and low Z erosion
+%==============================================================================
 
-\subsection{Boronization}
+\section{Boronization and Erosion}
 \label{sec:BZNOverview}
-High-Z refractory metal PFCs, particularly tungsten, are leading material choices for reactor PFCs.  This is due to their low erosion and low tritium retention and its ability to withstand high thermal loads and resist neutron damage and activation \cite{WWoBoronization}. As a result, Alcator C-Mod uses almost entirely molybdenum PFCs -- a high-Z refractory metal with similar properties to W.  Despite the advantages of W and Mo, when high-Z elements enter the plasma energy confinement and plasma performance is degraded severely due to increased radiation from the high-Z impurities.  This tends to have strong negative impact on C-Mod plasma performance when operating with bare Mo PFC, typically only achieving H-Mode plasmas with confinement quality $H_\mathrm{ITER,89} \sim 1$.  
 
-This was solved early on with the C-Mod boronization process which plasma deposits boron on PFCs using an electron cyclotron discharge cleaning ECDC plasma with a helium-diborane gas mixture. The plasma is created near the ECDC resonance which is swept in the the radial direction by varying the toroidal field to distribute the boron across PFCs in the divertor% (with typical parameters: field f = 2.45 GHz, B = 0.088 T at $R_o = 0.67$ m). (%10\% B$_2$D$_6$, 90\% He)
+High-Z refractory metal PFCs, particularly tungsten, are leading material choices for reactor PFCs. This is due to their low erosion, low tritium retention, favorable thermal properties, and robustness to neutron damage and activation \cite{WWoBoronization}. As a result, Alcator C-Mod uses almost entirely molybdenum PFCs -- a high-Z refractory metal with similar properties to W.  Despite the advantages of W and Mo, when high-Z elements enter the plasma energy confinement and plasma performance is degraded severely due to increased radiation from the high-Z impurities. %This tends to have strong negative impact on C-Mod plasma performance when operating with bare Mo PFCs, typically only achieving H-Mode plasmas with poor confinement $H_\mathrm{ITER,89} \sim 1$.  
+%The impurity problems were successfully mitigated early on with the C-Mod boronization process. 
+This issue has been resolved in C-Mod with the boronization process which involves plasma depositing boron on PFCs using an electron cyclotron discharge cleaning (ECDC) plasmas with a helium-diborane gas mixture. The plasma is created near the ECDC resonance which is swept in the the radial direction by varying the toroidal field to distribute the boron across PFCs in the divertor. 
 
-When PFCs are plasma coated with boron using this procedure, the impurity radiation of the confined plasma drops substantially and the performance improves, essentially doubling energy confinement time, with $H_\mathrm{ITER,89}$ approaching 2.  The improvement in performance degrades with plasma exposure yet boron remains on most surfaces according ex-situ measurements.  This indicates that the decrease in performance is due to localized erosion of boron that occurs over a relatively small area of the PFCs \cite{WWoBoronization}.
+When PFCs are plasma coated with boron using this procedure, the impurity radiation of the confined plasma drops substantially and the performance improves, essentially doubling energy confinement time, with $H_\mathrm{ITER,89}$ approaching 2.% The consistent use of boroniation means that there is 
+The improvement in performance degrades with plasma exposure yet boron remains on most surfaces according ex-situ measurements. This indicates that the decrease in performance is due to localized erosion of boron that occurs over a relatively small area of the PFCs (with typical parameters: f = 2.45 GHz, B = 0.088 T at $R_o = 0.67$ m). (%10\% B$_2$D$_6$, 90\% He) \cite{WWoBoronization}.
+% (with typical parameters: field f = 2.45 GHz, B = 0.088 T at $R_o = 0.67$ m). (%10\% B$_2$D$_6$, 90\% He),
 
-Even though boronization is such a successful technique for improving plasma performance through impurity control, there is still relatively little quantitative understanding of its distribution after boronization and or the erosion patterns that are produced with plasma exposure.  It therefore warrants further study with the newly developed AIMS technique.  
-
-Though boronization and other low-Z coating are not feasible for long pulsed devices or reactors, the erosion and deposition of boron is important to study because the regions of boron erosion that lead to impurity injection in high performance tokamaks like C-Mod can identify the regions or plasma conditions that are responsible for the degraded performance.  Thus, measurements of boron can, in a sense, serve as a proxy for high-Z erosion and may play a vital role in understanding erosion in reactors as well as the complex net transport or migration of materials around the tokamak due to PMI.
-
-%PMI is essentially a near surface phenomenon that typically affects surfaces on the depth scales of 10s of $\mu$m or less.  This is the case because plasma erosion and deposition typically occur with rates on the order of 1-10 of nm/s as illustrated by the previous example.  Since most tokamaks operate in short $< 10$ second pulses the net growth or erosion of surfaces occurs on the $\mu$m scale over the course of a several month to year long experimental campaign.  In addition, diffusion of absorbed hydrogen, for example, typically occurs over $\mu$m length scales \cite{GrahamsThesis}.  As a result, ion beam analysis (IBA) has become an important tool to study PMI.
-
-% IBA involves using ion beams to induce nuclear reactions, elastic collisions, or atomic excitations in materials that are then used to identify and quantify isotopes in the material’s surface. MeV ion beams have penetration depths of 10s to 100s of $\mu$m into solid materials and can induce many different reactions.  At low beam current IBA is also non-disruptive to materials.  Since IBA has the appropriate depth scale and versatility, it is therefore well suited for studying PFCs.
-
-%A review of IBA  methods for fusion can be found in \cite{IBAforFusion}.  There are numerous examples of successful IBA studies of fusion materials.  For example, erosion rates were measured in Alcator C-Mod with depth marker and Rutherford backscattering spectroscopy \cite{CModMoDeposition}.  Another example is the use of IBA to quantify deuterium co-deposited with plasma impurity species such as beryllium, boron, carbon on PFCs in the Joint European Torus (JET) \cite{Rubel2003423}.  
-
-%Understanding the coupling between plasma physics and materials science in magnetic fusion devices is critical for the development of fusion reactors but has been severely hindered by the lack of in-situ PFC surface diagnostics. PMI such as the erosion/redeposition of PFC material, the evolution of PFC surface composition, and fusion fuel retention present significant plasma physics and materials science challenges for long pulse or steady-state devices.  Prior to AIMS, these issues could only be studied 1 year timescale ~1 year (>1000 seconds of plasma exposure on Alcator), making it nearly impossible to correlate specific plasma conditions to changes in surfaces.  However, AIMS has now demonstrated measurements of PFCs between plasma discharges, effectively improving the time-resolution 2-3 orders of magnitude, thus providing unprecedented access to the physics of PMI.
-
-%The AIMS diagnostic uses a compact (~1 meter), high-current (~1 milliamp) radio-frequency quadrupole accelerator to inject ~1 MeV deuterons into the vacuum vessel in between plasma shots. The tokamak's magnetic fields are controlled to steer the deuterons to PFC surfaces, where they induce high-Q nuclear reactions with low-Z isotopes in the first ~10 microns of material. Analysis of the induced gamma and neutron energy spectra provides quantitative measurements of the PFC surface composition that are used to reconstruct PFC surface conditions. This nondestructive, in-situ technique has demonstrated PFC surface composition measurements with plasma shot-to-shot time resolution, 1 micron depth resolution, and 1 centimeter spatial resolution over large PFC areas.
-
-  
-
-\section{Experiment}
-\begin{itemize}
-	\item Brief description of AIMS
-	\item Photo peak used for B detection
-	\item should be able to provide shot to shot 
-	\item Neutron reaction used for B detection
-\end{itemize}
-
-Measurements were made on the inner wall of Alcator C-Mod using the AIMS technique before, during, and after the last run day of the 2012 C-Mod campaign to observe the effects of plasma discharges.  Subsequent measurements were taken during the months following the campaign to observe changes due to plasma conditioning operations that include boronization, electron cyclotron discharge cleaning (ECDC), and glow discharge cleaning (GDC).  The AIMS geometry and timeline are presented and discussed in sections~\ref{sec:AIMSPIGEGeometry} and~\ref{sec:AIMSPIGETimeline}.  Results from these measurements are presented in~\ref{sec:PostCampResultsPhotopeaks} through~\ref{sec:AIMSIntershot}.  
-
-The AIMS photopeak analysis was able to successfully identify the 953 keV photopeak from the $^{11}$B($d,p\gamma$)$^{12}$B reaction and use it to quantify boron content on the C-Mod plasma-facing surfaces.  However, temperature stability issues in the gamma detector and low time averaged count rates caused some difficulty with the measurement of Boron photopeak for certain AIMS runs. 
-
-Following AIMS analysis, 4 tile-modules containing a total of 64 Molybdenum tiles were removed from the vessel and were analyzed using the external beam PIGE technique (chapter~\ref{Chapter:TandemPIGE}) to provide reliable quantitative measurements of the boron content on the PFC surfaces to compare with the overlapping AIMS measurements in order to validate the AIMS technique.  The PIGE results and comparison to AIMS are presented in section~\ref{sec:PIGEResults} and~\ref{sec:PIGEAIMSComparison}.  
-
-In addition to the PIGE method, which provides quantitative assessment of the boron areal density, the intensity of down-scattered neutrons from deuteron-boron reactions was found to correlate with the AIMS gamma measurements for boron.  While AIMS photopeak analysis provides unambiguous, quantitative boron measurements, the neutron detection provided significantly better counting statistics.  The two measurement techniques were therefore combined in order best quantify the time-evolution of boron in C-Mod.  Furthermore, the external PIGE measurements were combined with relative boron measurements from neutron scattering to provide a statistically significant validation of the quantitative capability of AIMS photopeak analysis.
-
-\section{AIMS Boron Measurements}
-...
-\section{Ex-situ Validation}
-\begin{itemize}
-	\item External PIGE analysis
-	\item 
-\end{itemize}
-\section{Discussion}
-\begin{itemize}
-	\item First ever in-situ spatially resolved measurement of Boron
-	\item Issues with calibration drift, blurred peaks
-	\item Neutron data
-	\item More gamma detectors closer for better statistics
-\end{itemize}
-
-\section{Results and Discussion}
+Even though boronization is such a successful technique for improving plasma performance through impurity control, there is still relatively little quantitative understanding of its distribution after boronization and the erosion patterns that are produced with plasma exposure. Boronization and other low-Z coatings are not feasible for long pulsed devices or reactors, however, the erosion and deposition of boron is important to study because these regions lead to impurity ?????????? injection in high performance tokamaks like C-Mod can identify the regions or plasma conditions that are responsible for the degraded performance.  Thus, measurements of boron can serve as a proxy for high-Z erosion and may play a vital role in understanding erosion in reactors as well as the complex net transport of materials throughout the the tokamak due to PMI.
 
 
-%AIMS was successfully implemented and applied to study boron erosion and deposition on the surface of plasma facing components (PFC) in Alcator C-Mod.  The retention of deuterium was also studied in~\cite{HartwigThesis}.  Since AIMS is a first of a kind, prototype of an in-situ PFC diagnostic, a major goal of the AIMS measurements and this thesis, is to demonstrate the viability of the AIMS technique and identify areas to improve in future implementations of AIMS diagnostics.  The second goal is to understand or quantify any interesting physics results that were observed in the measurements.  Both of these goals were achieved.  The successful implementation of the AIMS diagnostic, despite significant time constraints due to the uncertainty of funding for the C-Mod facility, have also allowed us to identify experimental difficulties that will allow AIMS to be greatly improved in the future.
-
-
-
-% \textcolor{red}{Comment: one of the measurements of the boron in certain runs, i.e. using the 953 keV photopeak from the … reaction as would be achieved with PIGE technique [back-reference to Ch on PIGE].} of Boron from the 953 keV photopeak from the $^{11}$B($d,p\gamma$)$^{12}$B reaction for certain AIMS runs.  To observe trends in the boron erosion and deposition profile, neutron data from~\cite{HartwigThesis} was used to fill in the gaps in the gamma measurements.
-
-%
-%==============================================================================
-%=========== AIMS and PIGE Timeline ===========================================
-%==============================================================================
-%
-%\subsection{AIMS and PIGE Geometry}
-\label{sec:AIMSPIGEGeometry}
-Measurements were taken at 4 poloidal locations for the majority of the AIMS runs spanning the maximum range of beam deflection allowed by toroidal field coils' DC power supplies. The calculated trajectories are shown projected on the midplane and poloidal plane in figure~\ref{fig:TrajectoryProjections}.  The steering, target geometry, and detection  parameters for these target locations were calculated with the methods described in chapter~\ref{Chapter:BeamDynamicsAndControl} are given in table~\ref{tab:TargetParameters}.  A poloidal sweep with finer spatial resolution was also performed over 9 locations spanning the same poloidal extent.  The locations that were studied with AIMS and with PIGE are overlaid with the inner wall tile-map are shown in figure~\ref{fig:TileMap0}. %The measurements taken at these locations are presented and discussed in the following sections.
-%
-\begin{figure}[h!]
+\begin{figure*}[p]
  \centering
-  \includegraphics[width=150mm]{Figures/AIMS/TrajectoryProjections.pdf}
- \caption{Calculated Beam trajectories for the four most common trajectories used
-for AIMS measurements on Alcator C-Mod.}
- \label{fig:TrajectoryProjections}
-\end{figure}
-%
-%
-\begin{figure}[p]
- \centering
-  \includegraphics[width=125mm]{Figures/AIMS/TileMap_Combined_Highlighted.pdf}
- \caption{\small Top: Tile map of the C-Mod inner wall, upper divertor, and lower divertor EF-1 shelf, toroidally spanning the A,B, and C port regions. Bottom: Zoomed-in tile map showing the locations of the PIGE and AIMS measurements.  Top Right: Deuteron beam trajectories are shown for four trajectories spanning the range of the AIMS measurements. The tiles highlighted in yellow/red were removed and PIGE analyzed following AIMS measurements.  The green ellipses indicate the calculated location and beamspots for AIMS measurements based on modeling (chapter~\ref{Chapter:BeamDynamicsAndControl}).  The filled ellipses represent the four locations used for the majority of the AIMS measurements corresponding to toroidal beam steering fields $B_\phi$ = \{0.000, 0.0582, 0.1135, 0.1618\} Tesla (in order from top to bottom).  }
+  \includegraphics[width=125mm]{figures/TileMap_Combined_Highlighted.pdf}
+ \caption{\small Top: Tile map of the C-Mod inner wall, upper divertor, and lower divertor EF-1 shelf, toroidally spanning the A,B, and C port regions. Bottom: Zoomed-in tile map showing the locations of the PIGE and AIMS measurements. Top Right: Deuteron beam trajectories are shown for four trajectories spanning the range of the AIMS measurements. The tiles highlighted in yellow/red were removed and PIGE analyzed following AIMS measurements.  The green ellipses indicate the calculated location and beamspots for AIMS measurements based on modeling. The filled ellipses represent the four locations used for the majority of the AIMS measurements corresponding to toroidal beam steering fields $B_\phi$ = \{0.000, 0.0582, 0.1135, 0.1618\} Tesla (in order from top to bottom).}
  \label{fig:TileMap0}
-\end{figure}
-%
-%\begin{figure}[h!]
-% \centering
-% \includegraphics[width=120mm]{Figures/AIMS/TileMap_ExtraZoomed_Highlighted.pdf}
-% \caption{Zoomed in tile map showing the locations of the PIGE and AIMS measurements.  Green ellipses indicate the calcuated %location and beamspots where AIMS measurements were made.  Tiles highlighed in yellow/red were removed and PIGE analyzed %following AIMS meaurements.  }
-% \label{fig:TileMap1}
-%\end{figure}
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=100mm]{Figures/AIMS/AllTilesWithPIGESpots.pdf}
- \caption{Photograph of PIGE analyzed tiles:  Circles represent beam spot sizes and locations for each measurement.  Refer to figure~\ref{fig:TileMap0} for tile locations in C-Mod.}
- \label{fig:TilePhotoBeamSpots}
-\end{figure}
-%
-\section{AIMS and PIGE Timeline}
-\label{sec:AIMSPIGETimeline}
-AIMS measurements were taken before, during, and after the last run day of the 2012 C-Mod campaign to measure changes in PFC surfaces on the 1 run day timescale and demonstrate the feasibility of inter-shot AIMS measurements.  A timeline for these measurements and plasma operations is given in table~\ref{tab:CampaignTimeline}.
-%
-\begin{table}
- \centering
- \begin{tabular}{|c|l|c|}
-  \hline
-  Date & Event & Expected Effect\\ \hline \hline
-  \textbf{10/01} & \textbf{AIMS measurements at 4 locations} & \textbf{--}\\ \hline
-  \textcolor{green}{10/02} & \textcolor{green}{18 lower single null shots} & \textcolor{green}{Unknown} \\ \hline
-  \textbf{10/02} & \textbf{AIMS measurements at 1 location} & \textbf{--}\\ \hline
-  \textcolor{red}{10/02} & \textcolor{red}{2 Inner wall limited (IWL) shots} & \textcolor{red}{Erosion} \\ \hline
-  \textcolor{red}{10/02} & \textcolor{red}{Attempted IWL shot resulting in disruption} & \textcolor{red}{Erosion}\\ \hline
-  \textbf{10/02} & \textbf{AIMS measurements at 1 location} & \textbf{--}\\ \hline
-  \textcolor{red}{10/02} & \textcolor{red}{2 Inner wall limited shots} & \textcolor{red}{Erosion} \\ \hline
-  \textbf{10/03} & \textbf{AIMS measurements at 4 locations} & \textbf{--}\\ \hline
- \end{tabular}
- \caption{Timeline of AIMS measurement during the 2012 C-Mod campaign.  Red represents processes that are expected to cause net erosion.  The effect of the lower single null discharges on the inner wall is unknown and is shown in green.}  
- \label{tab:CampaignTimeline}
-\end{table}
-%
-In the months following the campaign two boronizations were performed in an attempt to measure the amount of deposited boron during the boronization process.  This was followed by two electron cyclotron discharge cleanings (ECDC) and a glow discharge cleaning (GDC) to observe boron erosion and/or the effects of these standard wall conditioning techniques.   A timeline for these measurements and plasma wall conditioning operations is given in table~\ref{tab:PostCampaignTimeline}. 
-%
-\begin{table}
- \centering
- \begin{tabular}{|c|l|c|}
-  \hline
-  Date & Event & Expected Effect\\ \hline \hline 
-  \textbf{10/11} & \textbf{AIMS Poloidal Sweep: 9 locations} & \textbf{--}\\ \hline
-  \textbf{11/12} & \textbf{AIMS measurements at 4 location} & \textbf{--}\\ \hline
-  \textcolor{blue}{11/12} & \textcolor{blue}{Standard Overnight Boronization} & \textcolor{blue}{Deposition} \\ \hline
-  \textcolor{blue}{11/13} & \textcolor{blue}{Inner Wall Overnight Boronization} & \textcolor{blue}{Deposition} \\ \hline
-  \textbf{11/14} & \textbf{AIMS measurements at 4 location} & \textbf{--}\\ \hline
-  \textcolor{red}{11/14} & \textcolor{red}{Electron Cyclotron Discharge Cleaning (ECDC)} & \textcolor{red}{Erosion} \\ \hline
-  \textbf{11/15} & \textbf{AIMS measurements at 4 location} & \textbf{--}\\ \hline
-  \textcolor{red}{11/15} & \textcolor{red}{Electron Cyclotron Discharge Cleaning (ECDC)} & \textcolor{red}{Erosion} \\ \hline
-  \textbf{11/15} & \textbf{AIMS measurements at 4 location} & \textbf{--}\\ \hline
-  \textcolor{red}{11/15} & \textcolor{red}{Glow Discharge Cleaning (GDC)} & \textcolor{red}{Erosion} \\ \hline
-  \textbf{11/16} & \textbf{AIMS measurements at 4 location} & \textbf{--}\\ \hline
-  \textbf{12/12} & \textbf{64 inner wall tiles removed followed by PIGE analysis} & \textbf{--}\\ \hline
- \end{tabular}
- \caption{Timeline of post-campaign AIMS measurement and wall conditioning. Red and blue represent processes that are expected to cause net erosion and deposition of boron, respectively.}
- \label{tab:PostCampaignTimeline}
-\end{table}
+\end{figure*}
 
 %==============================================================================
-%=========== AIMS Results =====================================================
-%==============================================================================
-
-\section{AIMS Photopeak Analysis: Boronization and Wall Conditioning}
-\label{sec:PostCampResultsPhotopeaks}
-  %A finer poloidal sweep of 9 positions over the same range were studied after the campaign.
-Gamma spectra taken with the lanthanum bromide (LaBr$_3$) detector were analyzed to observe the 953 keV gamma peak from the $^{11}$B($d,p\gamma$)$^{12}$B reaction.  Using the methods described in chapter~\ref{Chapter:IBAtheory} section~\ref{sec:GammaSpecForAIMS}, the integrated counts in these peaks and the geometric parameters given is table~\ref{tab:TargetParameters} were used to calculate the areal density of the boron on the tiles.  A typical spectrum used for quantifying boron is shown in figure~\ref{fig:PIGESpecGoodvsBlurred}.  The following features are observed in the spectrum and are denoted by their gamma energies: 
-%
-\begin{itemize}
- \item  953 keV: Photopeak from the $^{11}$B($d,p\gamma$)$^{12}$B reaction used for quantifying boron with AIMS.
- \item  511 keV: annihilation gammas produced from $\beta^+$ decay of short-lived reaction products from deuteron induced reactions or nearby pair-production.
- \item  847 keV: Inelastic neutron scattering $^{56}$Fe($d,n'\gamma$)$^{56}$Fe from steel structural materials in C-Mod.
- \item  661 keV: Gamma emission from $^{137}$Cs calibration source. This source is intentionally placed beside the detector during the AIMS measurements for energy calibration
- \item 1173 keV and 1332 keV: Gamma emission from $^{60}$Co calibration source for energy calibration (only distinguishable in spectra when beam is off).
-\end{itemize}
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=100mm]{Figures/AIMS/GammaSpectraComparison.pdf}
- \caption{Plot of gamma spectra from two different AIMS measurements.  In the typical spectrum a 953 keV photopeak from the $^{11}$B($d,p\gamma$)$^{12}$B reaction is observed.  From the spectrum that is blurred by thermal drift in the gain, the 953 keV peak and other features cannot be easily distinguished from background. }
- \label{fig:PIGESpecGoodvsBlurred}
-\end{figure}
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=110mm]{Figures/AIMS/AIMS_Gamma_Spectrum_Highlighted.pdf}
- \caption{Close up view of a 953 keV photopeak in an AIMS gamma spectrum from the $^{11}$B($d,p\gamma$)$^{12}$B.  Poisson error bars are shown for each bin and demonstrate that the peak is statistically significant and distinguishable from background.  The 847 keV gammas from inelastic neutron-scattering off iron is also visible and clearly distinguishable from the 953 keV photopeak.}
- \label{fig:ZoomedInAIMSPhotopeak}
-\end{figure}
-
-The observed 953 keV gamma peak has relatively few counts compared to the large continuum from scattered gammas which is a consequence of the high reaction yield and small detector solid angle.  The peak, however, is statistically significant as can be seen in close up of the gamma spectrum in the neighborhood of 953 keV, shown in figure~\ref{fig:ZoomedInAIMSPhotopeak}.  Despite the low number of counts (typically 800-1000 counts), leading to Poisson uncertainty of up to $\pm 3.5\%$, the peak uniquely identifies and quantifies the boron content.   
-
-The Boron areal density from the post campaign measurements, taken between boronization, ECDC, and GDC conditioning operations are shown in units of boron thickness in figure~\ref{fig:BoronThicknessRaw}.  These constitute the first-ever in-situ quantitative measurement of solid surface properties in a fusion device using ion beam analysis.  Some of these data are missing because of issues that arose due to the temperature fluctuations in the silicon photodiode of the LaBr$_3$ detector.  A spectrum that was blurred from thermal drift of the detector gain is shown plotted next to a spectrum measured with stable gain for comparison in figure~\ref{fig:PIGESpecGoodvsBlurred}.
-
-The detector temperature instability was likely due to radiative heat transfer between the vessel and the re-entrant tube with temperature fluctuations caused by liquid nitrogen cooling used for C-Mod's coils and heaters used to prevent icing around the ports.  Despite using compressed air to cool the detector and provide a stable temperature, the temperature fluctuations caused the detector's gain to shift over the course of some of the measurements causing the peaks to be blurred into the background signal.  This identifies a design issue that can be addressed in future implementations of AIMS with thermal engineering solutions.
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=110mm]{Figures/AIMS/BoronFromAIMSGammaPhotoPeaks.pdf}
- \caption{Boron thickness determined with AIMS at four poloidal locations from measurements of the 953 keV $^{11}$B($d,p\gamma$)$^{12}$B photopeak. }
- \label{fig:BoronThicknessRaw}
-\end{figure}
-%
-\subsection{Discussion of Photopeak Results}
-The photopeak results in figure~\ref{fig:BoronThicknessRaw} show that the measured boron at the first two locations ($B_\phi=0$ T and $B_\phi=0.582$ T) are approximately $300-400$ nm.  This observation appears promising because the range of their values shows reasonable agreement with the well established external PIGE measurements of boron described later in section~\ref{sec:PIGEResults}.  Also, comparing between spatial locations and within each location, there are statistically significant spatial patterns observed as well as changes at each location due to wall conditioning.  
-
-The boron 953 keV photopeak is clearly identifiable and integrable in the spectra corresponding to the data in figure~\ref{fig:BoronThicknessRaw} and is also the only major $(d,g)$ photopeak that is observable.  This demonstrates the capability of AIMS to detect boron, while validating the assumption that boron is the dominant low-Z, non-fuel isotope in C-Mod while oxygen, nitrogen, and carbon are negligible in comparison.
-
-The measurements also directly demonstrate a dynamic range of AIMS measurements from 50 nm ($B_\phi=0$.16~T, lower divertor) to 500 nm ($B_\phi=0$~T, near the midplane).  Furthermore, based on the correlation derived in section~\ref{sec:AIMSArealDensity}, the range should not be limited to 500 nm and should extend to around 8000 nm.  Since boron on C-Mod tiles typically forms layers that are less than several $\mu$m thick, this dynamic range meets and exceeds the requirements for quantitative boron measurement in C-Mod.
-
-The successful analysis of these photopeaks demonstrates the quantitative boron detection capability of AIMS.  The level of uncertainty in the data and missing data in the boron time history highlight the need for resolving the thermal drift issues and improving the counting statistics of the measurement.
-%
-%\textcolor{red}{expand on fact that this is first absolute measurement of the surface content performed with AIMS
-%- value is  60-500 nm  in approx. agrement with ex-situ analysis..to be compared later on}
-%- dynamic range good (as expected in general from IBA)
-%- spatial pattern present.
-%- i.d. of isotope of interest
-%- no other strong photopeak observed..initial conclusion is that B is by far dominant low-Z non f-fuel species to %produce..(e.g. C, O much lower)
-%- time resolved
-%
-%challenges
-%- thermal drift
-%- counting stats.
-%
-%--> this success leads us to use other measurement not so sensitive to thermal drift, i.e continuum from neutrons and/%or gammas.
-%
-%- continuum measurements 6.3.1
-%
-%- question will be correlation to known photopeak i.d. of boron?
-%
-%- plot at same location of showing that the continuum are well correlated to photopeak…but only at same location…neutron counts / counts of Boron at different locations  Show that the sensitivity changes… indication of future work on neutron sensitivity from the D-B…
-%
-%--> two comparison
-%1. Absolute comparison to ex-situ assessment.
-%
-% -- explain external PIGE
-% - absolute value of boron content within experimental uncertainty in 3 out of 4 quality photopeak 
-%
-%2.Relative changes in boron due to plasma }
-%
-%\begin{itemize}
-%\item Show spectrum
-%\item Show blurred Spectrum
-%\item Show plot of thickness at 4 locations
-%\item Timescale of measurements
-%\item Spatial Resolution
-%\item Steering limitations
-%\item For inter-shot measurements only one position was observed (time constraint)
-%\end{itemize}
-%
-\subsection{AIMS Neutron Detection of Boron}
-%Despite all of the gamma measurements that were taken only a few had photo peaks,
-With the success of the photopeak analysis in detecting boron as well as the experimental issues preventing the photopeaks from producing a complete boron time history, AIMS neutron analysis was studied as a method to corroborate and improve upon the photopeak results.
-
-Energy resolved measurement of the neutrons were taken concurrently with the gamma measurements using an EJ301 liquid organic scintillator coupled to a photomultiplier tube residing outside of the C-Mod field coils.  The details of the neutron detection equipment and theory are given in~\cite{HartwigThesis}.  Though these neutron spectra do not contain distinct features that identify boron, the integral of the high energy neutrons in the spectra are suspected to be indicative of the boron content.  This technique was demonstrated then used to make relative measurements of boron to extrapolate trends between the sparse gamma data.  
-
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=110mm]{Figures/AIMS/BoronIntegrationPlot.pdf}
- \caption{Relative measurements of boron are made from the AIMS neutron spectra by integrating the high high energy portion of the spectrum shown in blue, corresponding to neutron from the $^{10}$B($d,n$)$^{11}$C and $^{11}$B($d,n$)$^{12}$C reactions.  The `channels' on the spectrum correspond to the binning of charge output from the detector which is related to scintillator light output and is a non-linear function of energy.  The region of integration shown from 1.8 - 2.5 corresponds a region of in which only neutrons from boron are energetically allowed~\cite{HartwigThesis}.}
- \label{fig:BoronNeutronSpectrum}
-\end{figure}
-
-Making neutron-based measurements of boron by simply integrating a certain segment of the neutron spectrum is not possible in general.  However, it is possible in C-Mod because 0.9 MeV deuterons can only react with a few low-Z isotopes that are present on PFCs due to C-Mod's strict high-vacuum and impurity requirements.  Only boron and deuterium should be present with trace amounts of oxygen which can emit neutrons through the reactions shown in table~\ref{tab:NeutronReactions}.  The lack of other low-Z isotopes was also verified with the photopeak measurements.
-
-%Since there are very few low-Z isotopes present on the surface of PFCs , and there there are very few reactions that can be induced by 0.9 MeV deuterons, there is a distinct region of the spectrum corresponding to neturons that can only be produced by boron.
-
-%\begin{table}[h]
-%\centering
-% \begin{tabular}{|lr|}
-%  \hline Reaction & Q [keV] \\ \hline \hline
-%  $^\mathrm{\;\;2}$H$(d,n)^\mathrm{3}$He & 3268.914 \\ 
-%  $^\mathrm{10}$B$(d,n)^\mathrm{11}$C & 6464.804 \\
-%  $^\mathrm{11}$B$(d,n)^\mathrm{12}$C & 13732.283\\
-%  $^\mathrm{11}$B$(d,n\: 2\alpha )^\mathrm{4}$He & 6457.542 \\
-%  $^\mathrm{11}$B$(d,n\: \alpha )^\mathrm{8}$Be & 6365.701 \\
-%  $^\mathrm{16}$O$(d,n)^\mathrm{17}$F & -1624.296 \\
-%  \hline
-% \end{tabular}
-%\caption{Deuteron induced neutron-producing reactions and their Q-values for low-Z isotopes on C-Mod PFCs.}
-%\label{tab:NeutronReactions}
-%\end{table}
-
-\begin{table}[h]
-\centering
- \begin{tabular}{|lr|}
-  \hline Boron Reactions & Q [keV] \\ \hline \hline 
-  $^\mathrm{10}$B$(d,n)^\mathrm{11}$C & 6464.804 \\ 
-  $^\mathrm{11}$B$(d,n)^\mathrm{12}$C & 13732.283 \\
-  $^\mathrm{11}$B$(d,n\: 2\alpha )^\mathrm{4}$He & 6457.542 \\
-  $^\mathrm{11}$B$(d,n\: \alpha )^\mathrm{8}$Be & 6365.701 \\
-  \hline \hline Other Reactions & Q [keV] \\ \hline \hline 
-  $^\mathrm{\;\;2}$H$(d,n)^\mathrm{3}$He & 3268.914 \\
-  $^\mathrm{16}$O$(d,n)^\mathrm{17}$F & -1624.296 \\
-
-  \hline
- \end{tabular}
-\caption{Deuteron induced neutron-producing reactions and their Q-values for low-Z isotopes on C-Mod PFCs.}
-\label{tab:NeutronReactions}
-\end{table}
-
-The oxygen reaction is not energetically allowed and the maximum energy for neutrons from d-d fusion is lower than Q-value for the boron reactions. Assuming that these are the only reactions present, it follows that any detected neutron with energy greater than the Q value of the $^\mathrm{2}$H$(d,n)^\mathrm{3}$He reaction plus the beam energy is guaranteed to have been produced in a boron reaction due to kinematics and conservation of energy.  Integrating the continuum of scattered neutron counts in the high energy region of the spectrum (figure~\ref{fig:BoronNeutronSpectrum}), therefore, should give a result that is proportional to the amount boron that is present.  In addition, the large neutron to gamma yield ratio for boron provides measurements with better Poisson statistics than the gamma photopeaks.
-
-\subsubsection{Proportionality of Neutron and Gamma Measurements}
-\label{sec:NGProportionality}
-The correlation between neutron and gamma measurements must be demonstrated before neutron spectra can be used together to quantify boron.  For each AIMS measurement location and AIMS run where valid gamma and neutron data were available (i.e. identifiable photo peak and sufficient RF power in the accelerator), the relationship between gamma counts $N_\gamma$ and neutron counts $N_n$ were compared.  This comparison is shown in figure~\ref {fig:AIMSNeutronsGammaCorrelation} where each point represents an AIMS measurement where $N_n$ and $N_g$ were measured simultaneously with the same target, beam current, and acquisition time.
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=120mm]{Figures/AIMS/AIMS_Neutron_vs_Gamma_Correlation_Measured.pdf}
- \caption{Measured correlation between neutron $N_n$ and gamma $N_\gamma$ counts from AIMS measurement at four locations.  Each point represents an AIMS measurement where $N_n$ and $N_\gamma$ were measured simultaneously with the same target, beam current, and acquisition time.  A linear fit is drawn for data sets that show a statically significant correlation.}
- \label{fig:AIMSNeutronsGammaCorrelation}
-\end{figure}
-
-
-Observing the relationship between the neutrons counts $N_n$ and gamma counts $N_\gamma$ shows that, for the zero field case and the 0.058 T case, there is a clear, statistically significant correlation between between the two detection techniques which appears to be linear, tracking a 50\% change in boron induced counts.  This confirms the proportionality relationship $N_n \propto N_\gamma$.  For the other two target locations with steering fields, fewer gamma points were available, and the counting uncertainty in the photopeaks is relatively large.  This made it more difficult to conclusively establish the proportionality between the $N_n$ and $N_\gamma$ measurements, although within the statistical uncertainty, the results do not disagree with the proportionality.  
-
-The physics is essentially identical between each location, only differing in beam and detection geometry.  There is also no physical reason to expect that another element to be present at only specific locations which could contribute to the neutron continuum.  It is therefore likely that likely that a proportionality relationship exist for each of the four locations.
-
-From studying the results from these four locations in figure~\ref{fig:AIMSNeutronsGammaCorrelation}, it is also clear that the proportionality of the measurements between $N_n$ and $N_\gamma$ does not remain the same between locations.  This is not unexpected and is likely due to a variety of factors including the angular dependence of the cross sections, detection geometry, complex neutron scattering geometry, and differing mean free paths of neutrons and gammas in the presence of obstructions in the detection geometry.   
-
-As a result of establishing the relationship between $N_n$ and $N_\gamma$, this simple integration of the high energy neutron counts can thus be used to provide a relative measurement of boron content that can be absolutely calibrated from the gamma photopeaks to allow trends in the boron evolution to be studied in the absence of a contiguous set of gamma measurements.
-
-\subsubsection{Boron Time History with Neutron and Gamma Data}
-\label{sec:BoronHistoryWithNandG}
-The integrated high energy neutron counts, measured after each plasma wall conditioning operation are shown in figure~\ref{fig:NormalizedAIMSNeutrons} at 4 beam locations. The data shown are neutron yields.  The data shown are neutron yields, i.e. the neutron counts have each been individually normalized to the integrated beam current at each measurement. Then, at each spatial location, the data are scaled so that the final measurement occurring after wall conditioning (GDC) is set to unity.  Thus these data provide a relative measurement for the time history of the boron at each location. These data provide a relative measurement of time history of boron.  Normalizing to the final AIMS measurement is arbitrary but it is convenient for the first two traces because they can be calibrated to the PIGE measurements taken at the same locations to compare to the AIMS photopeak measurements, as described in section~\ref{sec:PIGEAIMSComparison}.
-
-%As can be seen in figure~\ref{fig:NormalizedAIMSNeutrons} the AIMS technique can readily follow relative changes in the boron content of a few percent, provided the better counting statistics of the neutron spectra. In some locations the changes are modest, while at the lowest measurement point the boron changes by over a factor of two. This is critical because it shows that the surface conditions are evolving in a complex manner even from ``simple" wall conditioning techniques, indicating the necessity of making in-situ measurements.   In a relative way, it appears that boron is increased by boronizations at the lower locations whereas no change occurred near the midplane.  The conditioning techniques have relatively little effect (few percent) on the boron trends at the inner wall. The boron appears to change most significantly at the lowest location which is essentially the nose of the inner divertor which juts out radially.
-
-As can be seen in figure~\ref{fig:NormalizedAIMSNeutrons} the AIMS technique can readily observe relative changes in the boron content of a few percent due the more favorable counting statistics provided by the neutron spectra. In some locations the changes are modest, while at the lowest measurement point the boron changes by over a factor of two. This is critical because it shows that the surface conditions are evolving in a complex manner even from straightforward wall conditioning techniques, thus indicating the necessity of making in-situ measurements.
-
-%\begin{itemize}
-%\item Only a few photo peaks were acceptable
-%\item Liquid nitrogen cooling of the coils and heaters to prevent icing around the ports caused the detector temperature to be unstable
-%\item The gain of the photo-diode is temperature sensitive so temperature fluctuation.
-%\item Despite using compressed air for cooling, over the course of most measurements the peaks were blurred and unusable
-%\end{itemize}
-
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=120mm]{Figures/AIMS/BoronAIMSNormalizedNeutronCounts.pdf}
- \caption{Time history of high energy neutron counts corresponding to scattered neutrons from boron reactions.  The height of each marker indicates the Poisson uncertainty in uncertainty of neutron counts.  The error bars represent experimental uncertainties in charge integration and beam energy calibration.}
- \label{fig:NormalizedAIMSNeutrons}
-\end{figure}
-%
-Since a contiguous set of there AIMS gamma data was not available to observe the changes in boron between every experiment, the trends in neutron data were essentially used to bridge the gaps.  This was done by scaling the neutron data to best-fit the gamma data where concurrent $N_g$ and $N_n$ measurements were made.  This is effectively equivalent to calibrating the neutron data based on the proportionally relationships shown in figure~\ref{fig:AIMSNeutronsGammaCorrelation}.  The calibrated neutron data is given in figure~\ref{fig:AIMSNeutronsGammaResult} showing the boron time history spanning the post-campaign plasma wall conditioning experiments.
-
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=120mm]{Figures/AIMS/BoronAIMSNeutronGammaComparison.pdf}
- \caption{Time history of boron inferred from high energy neutron counts and calibrated to best fit the AIMS gamma results.  The height of the data markers indicate Poisson error and the error bars indicate the absolute error from measurement and calibration.}
- \label{fig:AIMSNeutronsGammaResult}
-\end{figure}
-
-
-The error bars shown in figure~\ref{fig:AIMSNeutronsGammaResult} indicate the uncertainty in the absolute boron content from the neutron and gamma detection methods. These uncertainties are much larger than the relative uncertainties based on counting statistics of the neutron measurement (indicated by the height of the data markers). These large uncertainties are due to the propagated errors in normalizing the neutron count rate to absolute boron content through the gamma detection.  The uncertainty is calculated using equation~\ref{eq:NeutronNormError} by combining the Poisson error associated with the neutron counts and current integration (1st and 2nd term), the standard error of the mean associated with the gamma measurements (3rd term) and the standard deviation of between the neutron and gamma data (4th term).  
-
-\begin{equation}
-\frac{\Delta B_n}{B_n} = \left[  \frac{1}{N_n} + \left( \frac{\Delta Q}{Q} \right)^2 + \frac{1}{M_\gamma}\sum  \left( \frac{\Delta B_\gamma}{B_\gamma} \right )^2 + \frac{1}{M_\gamma}\sum (B_\gamma-B_n)^2 \right]^{1/2}
-\label{eq:NeutronNormError}
-\end{equation}
-
-From these measurements, qualitatively it appears that some amount of boron may be deposited during boronization and a small amount could be removed ECDC and GDC.  Though it is difficult to make this result precise due to the large uncertainty in the measurement, it is clear that changes boron thickness can be observed on the time scale of plasma conditioning operations, especially if the uncertainty is reduced simply by improving detection statistics and solving detector issues.  %In addition, this result definitively shows that boronization does not deposit significant amounts of boron on the inner wall.  
-
-The AIMS measurements show that boron deposition is limited to 50-100 nm at the innerwall.  Previous studies have examined the in-situ boron deposition rate with a Quartz Micro Balance~\cite{Ochoukov20121700} and found the deposition rate to be strongly reduced just slightly radially inboard of the EC resonance layer and the peak deposition to be located at the uppper hybrid resonance, typically 5-10 cm outboard of the EC resonance.  This phenomenon is illustrated in figure~\ref{fig:BoronizationExlpanation}.  While not known precisely the range of deposition rates of $\sim$0.3 nm/minute at the EC resonance, which would extrapolate to $\sim$ 36 nm based on the 120 minutes of the boronization which is consistent with the range of boron deposition measured with AIMS.  This demonstrates the need for AIMS which can directly measures boron content on material surfaces (unlike the QMB).  It also captures the complexities of the alignment of surface to the B field and the complexities of particle transport which are both difficult or potentially impossible to extrapolate from plasma knowledge alone. 
-
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=150mm]{Figures/AIMS/BoronizationECDCExplanation.pdf}
- \caption{Left: Deposition profile of boronizaion measured with a quarts micro-balance (QMB).  Peak deposition is observed at or outboard of the upper hybrid resonance (UH) while deposition decreases sharply approaching the electron cyclotron (EC) resonance layer.  The left plot was reproduced from~\cite{Ochoukov20121700} and adapted for this figure.  Right: The relative position of the EC, UH, and peak boron deposition regions are shown illustrate their proximity to the AIMS measurement locations. }
- \label{fig:BoronizationExlpanation}
-\end{figure}
-
-From these results seen in figure~\ref{fig:AIMSNeutronsGammaResult}, it can be seen that boron wall conditioning techniques in C-Mod have relatively little effect on the boron trends at the inner wall.  It is also observed that the largest boron deposition occurred at the lower two AIMS measurements which are located on the section of the inner wall that protrudes several cm radially in the direction of the expected deposition peak.  Qualitatively, this result is consistent with deposition profile measured in~\cite{Ochoukov20121700}.  These results, though qualitative due to the large uncertainty, should further motivate the continued use of AIMS to better understand the complexities of even simple wall conditioning operations and should motivate the need expand and improve upon the capabilities of AIMS.
-
-%For these results to be believable, the AIMS technique must also be validated against a proven and quantitative ex-situ ion beam analysis technique such as PIGE. Comprehensive PIGE results for the available sections of the inner wall are described in section~\ref{sec:PIGEResults} with PIGE validation effort for the AIMS photopeak analysis described in section~\ref{sec:PIGEAIMSComparison}.
-\section{AIMS Poloidal Sweep with Single Tile\\ Resolution}
-%
-A poloidal sweep was performed with fine spatial resolution was attempted after the end of the C-Mod campaign to generate a poloidal boron profile with single tile resolution to demonstrate its feasibility.  This was a sweep of all of the 9 AIMS locations shown in figure~\ref{fig:TileMap0} where most of these measurements have beam spots sizes that are comparable to the size of a tile.
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=120mm]{Figures/AIMS/PoloidalSweepSpectra.pdf}
- \caption{Gamma spectra from AIMS poloidal sweep with single tile resolution.  It appears that, only two of these spectra have photopeaks that are suitable for quantifying boron.  }
- \label{fig:AIMSPoloidalSweep}
-\end{figure}
-
-Unfortunately, due to thermal effects in the detector, only two of the spectra contained photopeaks that were suitable for quantifying the boron. Since the neutron to gamma ratio clearly does not remain constant with position, as shown in figure~\ref{fig:AIMSNeutronsGammaCorrelation}, the neutron data could not be used to make these spatially resolved measurements.  % In this case neutron data could not be used to fill in the missing photopeak data because the 
-
-Though generating a poloidal boron profile that include every tile along a poloidal sweep was not successful, it is important to note that, with the thermal issues in the detector resolved, a poloidal sweep with single-tile resolution should be achievable in a straightforward manner if gamma detection is improved.  This is motivated by the observation that the overall gamma count yield clearly is modified between the different locations in figure~\ref{fig:AIMSPoloidalSweep}, indicating that there is indeed a complex spatial pattern of boron films evolving at the surfaces and that AIMS is capable of distinguishing the pattern.
-
-
-%
-%\begin{itemize} 
-%\item average value of overlapping gamma and neutron points are equal
-%\item Not very precise process
-%\item Error is a combination of random error of neutron and gamma data + standard error of the mean + standard %deviation
-%\end{itemize}
-%
-%Method:
-%
-%\begin{itemize}
-%\item Higher energy section of the neutron spectrum was integrated 
-%\item Proportional to surface boron with good statistics
-%\item Valid because there are no other known cross sections in that energy range for a 0.9 MeV Beam
-%\item Absolute measurements of B with gamma data can be used to scale the neutron to fill in the gaps in the trends 
-%\end{itemize}
 %
 %==============================================================================
-%=========== PIGE Results =====================================================
-%==============================================================================
 
-\section{External PIGE Results} 
-\label{sec:PIGEResults}
-After the 2012 C-Mod campaign, there was a brief vacuum break during which four inner wall tile modules (each with a $4\times 4$ arrangement of tiles) were removed from the inner wall and analyzed.  PIGE analysis was performed on all 64 of the available tiles.  For each tile, at least one measurement was taken at the center of the plasma facing surface with a 3 mm diameter proton beam using the setup shown in figure~\ref{fig:BeamLinePhotosXPIGE}.  A photograph of the analyzed tiles is shown in figure~\ref{fig:TilePhotoBeamSpots} with outlines drawn to represent location and size of the proton beam used for each measurement.
-%
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=100mm]{Figures/PIGE/TypicalPIGESpectra.pdf}
- \caption{Several overlaid gamma spectra used from external PIGE measurements of boron using the $\mathrm{^{10}_5B}(p,\alpha \gamma) \mathrm{^7 _4 Be}$ reaction.  The three higher energy peaks are reactions induced in the aluminum structure supporting the beam window.}
- \label{fig:TypicalPIGESpec}
-\end{figure}
-%
-%Reactions in Window:
-%O16 (p,g) F17   600.27
-%Al 843
-%Al 1013
-%Al 1370
+\section{AIMS analysis of boron in Alcator C-Mod}
 
-Typical spectra from these PIGE measurements are shown figure~\ref{fig:TypicalPIGESpec}.  From these spectra the 432 keV gamma peaks from the $_{\;\;5}^{10}\mathrm{B} (p,\alpha \gamma) _4^{7}\mathrm{Be} $ reaction can clearly be observed.  These peaks were background subtracted and integrated using peak integration routines in the Maestro spectroscopy software package from ORTEC~\cite{Maestro}.
+AIMS Measurements were made at 4 poloidal locations on the inner wall of Alcator C-Mod using the AIMS technique before, during, and after the last run day of the 2012 C-Mod campaign to observe the effects of plasma discharges. Subsequent measurements were taken during the months following the campaign to observe changes due to plasma conditioning operations that include boronization, electron cyclotron discharge cleaning (ECDC), and glow discharge cleaning (GDC).  
 
-These peaks typically contain $\sim 5\times 10^{4}$ counts so Poisson error in the peak and current integration typically contributes $<$ 1\% error.  Other experimental uncertainties also contribute but are relatively small, giving typical uncertainties of $\pm$3\%. 
 
-The correlation derived in section~\ref{sec:PIGECorrelation} was used to convert the gamma yields from these measurement to areal density of boron.  The areal density is represented as `boron thickness' assuming that the boron is found in a uniformly distributed surface layer of pure boron of where 1 nm = $1.30 \times 10^{20}$ atoms/m$^2$.  Due to low experimental uncertainty of these measurements, PIGE analysis provides reliable boron measurements that can be used to understand spatial pattern on PFC and can be compared to AIMS for validation.   
+The AIMS geometry and timeline are presented in figure~\ref{fig:TileMap0} and section~\ref{sec:AIMSPIGETimeline}.
 
-%The largest contribution to the error comes from the error associated with positioning of the tile.  This is the case because the beam energy on the same is sensitive to the distance that the beam travels through the air between the beam window and the sample. Details of the error calculation can be found in section~\ref{sec:PIGEError}. \textcolor{red}{...still need to check this}
 
-\subsection{PIGE Poloidal Scan}
-\label{sec:PoloidalScan}
-The first result shown is from a poloidal sweep that was performed with finer spatial resolution in column six to observe spatial variation in boron thickness within tiles.  The results of these measurements are shown in figure~\ref{fig:PIGEPoloidalSweep}.  The top plot shows the gamma ray yield from the tiles, normalized to the thick target yield from a solid boron nitride (BN) target with error bars indicating only the Poisson error and the lower plot shows the boron thickness with experimental uncertainties included.  
 
-These measurements show that, in this region of the inner wall, the boron thickness is $\leq 1 \mu$m for most tiles but in some cases thick as $\sim 3\; \mu$m.  For many tiles the boron is fairly uniform however boron thickness varies by as much as a factor of two within a single tile.  From this result, it is clear that for adequate diagnosis of PMI issues, tile-sized resolution or better is required.  This reinforces the importance of the efforts and contributions of this thesis to provide adequate spatial resolution through advanced beam dynamics calculations.
+\section{Ion Beam Analysis for AIMS Validation}
 
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=130mm]{Figures/AIMS/20140121_Boron_Thickness_Poloidal_Sweep.pdf}
- \caption{Top trace: poloidal profile of normalized gamma yield from the sixth column of tiles.  Bottom: poloidal profile of boron areal density represented in boron thickness (assuming a solid boron surface layer).}
- \label{fig:PIGEPoloidalSweep}
-\end{figure}
+\section{AIMS Results and Discussion}
 
-Since each PIGE measurement only corresponds to a 3 mm diameter beam spot while AIMS measurements typically have a tile sized beam spot, it is important quantify how much the boron varies, on average, within a tile.  This provides the uncertainty in the AIMS validation process due differing spot sizes between AIMS and PIGE.
-
-The tiles with greater than $1-2\; \mu$m of boron tend to have the largest boron variation and appear to be amorphous crystalline layers of boron.  Whereas, tiles with $<$ 1 $\mu$m to be more uniform, possibly due to a different boron erosion or deposition mechanism.  
-
-Since all of AIMS gamma measurements and all PIGE measurements in the vicinity of the AIMS beam spots showed less than $<$ 1 $\mu$m of boron, the tiles measured in the poloidal sweep with $<$ 1 $\mu$m of boron were used to infer the boron variation within each tile.  For each of these tiles, the standard deviation in boron thickness measured with PIGE between the three location on each tile is between 5\% and 28\% with an average of 17\%.  Even though the uncertainty in boron measurements from PIGE is very small, the uncertainty in the comparison of absolute boron measurements between AIMS and PIGE is expected to be on the order of 17\%.
-
-\subsection{2-D Tile Map of Post Campaign Boron Areal Density}
-
-After performing a poloidal scan of the tile modules a PIGE measurement was made in the center of each of the 64 available inner wall tiles.  The resulting map of measured boron thickness (areal density) is shown in figure~\ref{fig:PIGE2DBoronMap}. These measurements were also used to provide a direct comparison to validate the AIMS technique against the proven PIGE analysis techique as described in section~\ref{sec:PIGEAIMSComparison}.
-
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=120mm]{Figures/AIMS/20140121_Boron_Thickness_2D_Colormap.pdf}
- \caption{Boron thickness measured with external proton beam PIGE analysis}
- \label{fig:PIGE2DBoronMap}
-\end{figure}
-
-%\begin{itemize}
-%\item Plot of poloidal sweep of tiles
-%\item discussion of length scales of  
-%\item 2-D Plot of Gamma Yield 
-%\end{itemize}
-
-The tile map (figure~\ref{fig:PIGE2DBoronMap}) shows a significant variation in boron between tiles.  Some tiles have been polished by the plasma to extent where they have no detectable boron and other tiles have several microns of boron present.  This means that over the course of a campaign, inner wall tiles can experience anything from net deposition rates on the order of several nanometers per second ($\sim$1 cm/year) to net erosion that is sufficient to leave tiles devoid of boron.  This result further motivates the necessity of diagnosing and understanding the changes is PFC surfaces on timescales that are shorter than a run campaign with tile sized spatial resolution. 
-
-From observing the tiles visually, it appears that the misalignment of the tiles is quite small and could be be due to disruption induced eddy current forces. However the PMI involve magnetic fields that intercept the surfaces with such shallow angles in this region (and in general for divertor surfaces) that even these small misalignments can greatly change the local balance of erosion and deposition as well as plasma heat flux. This demonstrates how critical the effects of PMI are and further motives diagnostics like AIMS which provide 2-D mapping of the surfaces.
-
-%play a major roll in the accumulation and erosion patterns of boron on the tiles.  The misalignment is typically due to disruption induced eddy current forces and demonstrates how critical tile alignment and the engineering of PFCs is for controlling the effects of PMI.
-
-%\begin{enumerate}
-%\item Wide variation in B thickness
-%\item Tiles are twisted and misaligned contributing to the variation
-%\item Justifies the need for spatially resolved measurements and better tile alignment
-%\end{enumerate}
-
-\section{Quantitative Boron Measurements with\\ Combined AIMS and PIGE Results}
-\label{sec:PIGEAIMSComparison}
-
-The locations of AIMS measurements corresponding to no steering field and 0.0582 Tesla overlap with the boron map that was made from PIGE measurements.  Since boron was measured with neutrons and gammas from AIMS followed by measurement with the established PIGE technique at these locations, these overlapping measurements serve as validation of the AIMS technique.
-
-Since the AIMS gamma results provide a quantitative boron measurement from the photo peak, they should be compared directly to the PIGE boron measurement.  At these two overlapping PIGE/AIMS locations, however, the spectra from the final AIMS measurements could not provide an adequate photopeak due to the temperature drift issue discussed earlier.  Instead, a slightly different strategy was employed.  Using data from ex-situ PIGE results to be the absolute B thickness after the campaign, neutron data was used to extrapolate backward in time.  This extrapolation provided and quantitative time history of the boron thickness while also providing a means to compare AIMS gamma photopeak results to another quantitative technique for validation.
-
-%\subsection{Uncertainty in Beam Target Location}
-%To make a valid comparison between PIGE and AIMS measurements, the same locations must beam locations must be compared.  
-
-%The accelerator, beamline, and optics were aligned as precisely as possible with respect to the beam injection flange on B-port using engineering resources that were available.  However, it was not possible to align the accelerator directly with a point of reference on the C-Mod inner wall.  This meant that the accelerator could only be aligned with respect to the beam injection flange. 
-
-%Measurements of the beamline showed that the last flange on the beamline before the vacuum bellows was parallel to the injection flange to within better than $\pm0.7^o$, indicating good alignment (considering the accelerator is a 400 pound device mounted on slightly compliant floor).  However, the welding of either flange, uneven compression of copper gaskets attaching the flanges, and other such uncertainties could compound to cause a misalignments of $>1^o$.  In terms of wall position this could mean that the location on the PFC targets could be off by $\sim$1 C-Mod tile width from the design location.
-
-%A photograph of the view through the injection flange (figure~\ref{fig:InjectionFlangePhoto}) was used to make an estimate of the actual alignment of the beam.  The photograph was taken approximately concentric with the injection flange after the accelerator was removed and was analyzed to predict the location of the beamspot with no steering fields.  This image indicates that the beam was likely misaligned such that the no-field trajectory intercepted the wall roughly one tile above the location expected from the engineering design of the injection flange even though it is within design tolerances.  This location, indicated by figure~\ref{fig:InjectionFlangePhoto}, was taken to be the true location of the beamspot with no steering fields.  This observation also motivates the need for an optical method of in-situ beam alignment and calibration.  
-%
-%\begin{figure}[h!]
-% \centering
-%  \includegraphics[width=100mm]{Figures/AIMS/BeamlineViewForAlignment.png}
-% \caption{Photograph taken concentric to the beam port indicates that the no-field beam trajectory intercepts the wall one tile above the original engineering design. This offset is within the expected tolerances.}
-% \label{fig:InjectionFlangePhoto}
-%\end{figure}
-
-\subsection{Validation of Neutron and Gamma Results}
-
-The AIMS neutron data with a relatively high number of counts was shown to be correlated with the photopeak in section~\ref{sec:NGProportionality}.  As demonstrated in section~\ref{sec:BoronHistoryWithNandG}, neutron data can therefore be used to make quantitative measurements of boron if the are scaled to known absolute measurements.  
-
-Gamma measurements were not available after the final GDC that occurred before PIGE analysis for a direct comparison.  However, post GDC neutron measurement were successful.  Therefore, in order make a quantitative comparison between AIMS and PIGE, the neutron data was scaled so that the final neutron measurement matches the boron thickness measured with PIGE.  
-
-This neutron time history was calibrated to the trusted PIGE measurement and could therefore be used to extrapolate the boron thickness from the time of the final vacuum break, past the wall conditioning operations to where the AIMS photopeaks were observed.  Though the PIGE measurements have very small error bars, the uncertainty in the comparison between AIMS beamspots and PIGE is dominated by the estimated $\sim$17\% inherent uncertainty in the comparison due to the vastly different beam spot sizes (described in~\ref{sec:PoloidalScan}).  
-
-For the PIGE locations that were determined from photographic analysis of the beamline, this comparison is shown in figure~\ref{fig:AIMS_vs_PIGE_Shifted}.  The same comparison is shown in figure~\ref{fig:AIMS_vs_PIGE_Expected} for the PIGE locations that are predicted from the engineering design assuming perfect alignment.  
-
-Figure~\ref{fig:AIMS_vs_PIGE_Shifted} shows that three of the four boron measurements made from the photopeaks agree with the combined neutron-PIGE results within the uncertainty of the measurements.  Whereas, figure~\ref{fig:AIMS_vs_PIGE_Expected} shows a correlation that is physically inconsistent.  
-
-Despite the uncertainty in the beam alignment with the locations of the PIGE measurements and the differing spot sizes, this result is a strong indication that the AIMS analysis yields a real and quantitative in-situ measurement of boron; a milestone achievement for AIMS and a significant advancement for the field of PMI research.
-
-% That the photographic alignment is the most accurate indicator of target position that is available of this implementation of AIMS.
-%
-%
-%\textbf{Important points:} 
-%
-%\begin{itemize}
-% \item There appears to be uncertainty in the beam target locations.
-% \item Based on photographic evidence and gamma results, the beam trajectories appear to be shifted up by one tile.  See figure~\ref{fig:InjectionFlangePhoto}.
-% \item If we assume that the photographic evidence is correct, there is reasonably good agreement between the AIMS gamma, AIMS neutron, and PIGE results.  See figure~\ref{fig:AIMS_vs_PIGE_Shifted}
-% \item The result of this extrapolation is compared to the results from the AIMS photopeaks in figure~\ref{fig:AIMS_vs_PIGE_Expected} for expected beam AIMS beam locations based on the engineering design for the AIMS diagnostic.
-% \item This match is poor so the it is likely that the photographic evidence is correct
-% \item Conclusion: Reasonable agreement between the two vastly different techniques
-% \itme Conclusion: uncertainty in alignment is an issue, room for improvement: solvable problem for future AIMS implementations.
-%\end{itemize}
-
-\begin{figure}[h]
- \centering
-  \includegraphics[width=150mm]{Figures/AIMS/AIMS_vs_PIGE_ShiftedUp_With_2DMap.pdf}
- \caption{Left: Boron time history comparing AIMS($\gamma$) photopeak results to PIGE measurements by scaling AIMS($n$) neutron data for extrapolation.  AIMS neutron data were scaled to match the final PIGE measurements.  The shaded green area represents the inherent uncertainty in the comparison due to the differing beam spot sizes between PIGE and AIMS. Right: Map of boron measured with PIGE analysis with overlaid AIMS beamspots. The AIMS beamspots were assumed to be at the location that is indicated by a photograph taken concentric to the beam injection port (one tile above the design location).}
- \label{fig:AIMS_vs_PIGE_Shifted}
-\end{figure}
-
-\begin{figure}[h]
- \centering
-  \includegraphics[width=150mm]{Figures/AIMS/AIMS_vs_PIGE_ExpectedTrajectories_With_2DMap.pdf}
- \caption{Left: Boron time history comparing AIMS($\gamma$) photopeak results to PIGE measurements by scaling AIMS($n$) neutron data for extrapolation.  AIMS neutron data were scaled to match the final PIGE measurements.  The shaded green area represents the inherent uncertainty in the comparison due to the differing beam spot sizes between PIGE and AIMS.The AIMS beamspots were assumed to be at the location that is expected from the design of the diagnostic}
- \label{fig:AIMS_vs_PIGE_Expected}
-\end{figure}
-
-%now the trends between neutron and gamma data match in slope, and the absolute value of boron thickness measured with from gammas compared to backward extrapolation with the from post camp
-%\begin{enumerate}
-%\item Using ex-situ PIGE data for the absolute B thickness after the campaign, neutron data was used to extrapolate backward in time.
-%\item This is compared to the AIMS measurements taken earlier in time.
-%\item Match is not consistent if expected alignment is assumed
-%\item Match is within ???? percent with relatively small systematic error that is consistent between measurements.
-%\end{enumerate}
-
-%\begin{itemize}
-%\item Show overlayed plot of PIGE Boron map and beam spots
-%\item Show comparison of boron from absolute PIGE measurement with AIMS measurements
-%\end{itemize}
-%
-
-\section{AIMS Intershot Measurements}
-\label{sec:AIMSIntershot}
-
-A major goal of developing the AIMS technique was to observe changes on PFC surfaces between plasma shots.  Inter-shot measurements were attempted on the last day of the C-Mod 2012 campaign at one PFC location with no beam steering fields.  The time line of these measurements is shown in table~\ref{tab:CampaignTimeline}.  A measurement was made before the run day, then after the 18 lower single null I-Mode discharges, then after two inner wall limited plasmas including a disruption, then following the run day after two more inner wall limited discharges.  The inner wall limited discharges were done specifically to attempt to remove boron, and the disruption, whil unplanned might be expected to remove boron as well.
-
-The AIMS photopeak measurement before and after the run day were successful, however, the inter-shot photopeak measurements were not.  Neutron spectra however were measured successfully for all AIMS measurements during the run day.  With the relationship between high energy neutrons and photopeak gammas established in section~\ref{sec:NGProportionality},  the methods in section~\ref{sec:BoronHistoryWithNandG} were used to calibrate the relative boron measurement from the neutrons to the absolute boron measurements from the photopeaks to give quantitative inter-shot measurements of boron.  The result is shown in figure~\ref{fig:AIMS_NG_Intershot}.
-
-\begin{figure}[h]
- \centering
-  \includegraphics[width=150mm]{Figures/AIMS/AIMSIntershotPlot.pdf}
- \caption{Boron measurements through out a C-Mod run day using combined neutron and gamma data to demonstrate inter-shot AIMS measurements.}
- \label{fig:AIMS_NG_Intershot}
-\end{figure}
-
-This result shows that the boron on the the inner wall increased by 200 nm during the first 18 I-Mode shots indicating that these shots cause net deposition.  The first AIMS measurements were made on the October 2nd, the last run day of the Alcator C-Mod 2012 campaign.  The plasma discharges correspond to shot numbers 1121002XXX.  This run day began with a series of lower single null discharges to study I-Mode (shot numbers 1121002001-1121002024).  These experiments constituted 18 full length lower single null discharges. Over these 18 discharges, the boron thickness increased by $210\pm 50$ nm, corresponding to an average of $12\pm 3$ nm/discharge. 
-
-From the external PIGE measurements showed campaign averaged boron deposition rates on the order of 0.5 nm/discharge resulting in 500.4 nm of boron at location of the AIMS measurement.  This was the integrated result over a campaign containing a variety of plasma discharges including I-mode, H-mode, and various ICRF and LHCD experiments.  From an earlier study IBA study of C-Mod PFCs before the discovery of I-Mode, it was shown that tiles removed from C-Mod after a 1090 shot run campaign showed a boron areal density of $18\pm2 \;\mathrm{[10^{22} atoms/m^2]}$ in the region near the AIMS measurement location. This corresponds to a thickness of $770 \pm 85$ nm of boron with an average boron deposition rate of 0.7 nm/discharge.  The simple observation that deposition rates of boron during I-mode shots were measured with AIMS to be more than an order of magnitude higher than the campaign averaged values for a campaign with and without I-Mode demonstrates that the PMI effects of any particular plasma configuration cannot be resolved with campaign integrated measurements.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Following the I-mode experiments, a series of inner wall limited (IWL) discharges were dedicated to making AIMS measurements of boron and deuterium on the centerpost on a shot-to-shot timescale. Since the AIMS analysis was limited to the centerpost due to the B field power supply limitations. Inner-wall limited magnetic configuration was chosen in order to place the location of maximum plasma-material interaction (recycling, erosion) near the AIMS measurement location. 
-
-However one of the discharges, 1121002030, underwent a full-current disruption at $\sim$0.45 seconds, before the RF power was applied. The disruption was apparently caused by a high-Z injection of material into the plasma, leading the abrupt (ms timescale) termination of the plasma, depositing the plasmas energy at a rate of $>$~GW at or near the location of the AIMS measurement. 
-
-%The AIMS inter-shot capability thus provides insight as to the effect of the disruption on the plasma-facing surface. The AIMS measurement showed in fact that no measurable change occurred in either the boron or deuterium surface content due to the disruption.% The relative change in boron was within the XX  relative uncertainty (the absolute boron level is estimated to be ~ 400 nm? Based on PIGE and ex-situ analysis) and the relative change in D was XX 
-
-The plasma interaction with the centerpost is qualitatively interpreted by using the visible light camera (WIDE1) which views the toroidal location near B-port where AIMS also measures. The visible light, which is dominated by H-alpha emission is a relative measure of the particle flux density that is incident on the PFCs.  Images from WIDE1 are shown in figure~\ref{fig:Wide1View} with a the superimposed outline of the beam spot.  These images show the emission from a stable inner wall limited discharges, the intense emission during the disruption and the following glow due transient heating of the tiles.
-
-\begin{figure}[h!]
- \centering
-  \includegraphics[width=150mm]{Figures/AIMS/Wide1CameraViewOfPlasmaShots.png}
- \caption{Views from the WIDE1 visble camera. Left: Stable ohmic inner wall limited plasma. Middle: View of plasma during disruption. Right: Black body radiation is observed as a red-orange glow tiles heated by the disruption. Solid ellipse denotes predicted beam spot, dotted ellipse denotes predicted uncertainty in position. }
- \label{fig:Wide1View}
-\end{figure}
-
-The IWL configuration shows a ``band" of light at the center-post as expected, since the inner wall is the primary material target for recycling and power exhaust in such  a configuration (the last-closed flux surface is resting on the inner wall). The disruption also seems to have concentrated its particles at the inner-wall, however with such strong intensity that it saturates the camera (this verifies intense PMI but no quantitative assessment of local plasma conditions can be made). 
-
-The intense PMI caused by the disruption indicated by the camera frame immediately following the disruption.  Thermal emission is can be seen tiles near the midplane indicating substantial transient heating due to the disruption (the thermal emissions are absent in the following frame). Interestingly this region just below the midplane of intense interactions/heating with the disruption is the same as measured by AIMS.
-
-Disruptions rapidly cool the plasma so significantly increased sputtering (which would require prolonged higher edge temperatures) is unlikely.  However, disruptions can deposit enough thermal energy, causing melting of the molybdenum surfaces.  If such melting were to occur it would likely disturb boron surface layer leading to a change in boron that would be observable with AIMS.  Since no significant change was observed during the disruption, AIMS suggests that no surface melting is likely to have occurred. 
-
-\subsection{Complete Time Boron History}
-
-With the demonstrated AIMS measurement of boron during the C-Mod run day, it was then possible to combine all of the AIMS measurements of the B$_\phi = 0$~T location spanning the entire duration of the AIMS Campaign.  The compilation is shown in figure~\ref{fig:AIMS_NG_ALL}.  This plot was generated from the high energy neutron scattering data, scaled to minimize the deviation from photopeak measurements.   
-%
-\begin{figure}[h]
- \centering
-  \includegraphics[width=150mm]{Figures/AIMS/AIMS_Complete_Boron_Time_History.pdf}
- \caption{Boron time history spanning the entire AIMS run campaign 1 day of C-Mod operations followed by wall conditioning operations at the B$_\phi$ = 0 T location.  The PIGE measurement at the end of the campaign is also shown for comparison.}
- \label{fig:AIMS_NG_ALL}
-\end{figure}
-
-As described in table~\ref{tab:PostCampaignTimeline} and~\ref{tab:CampaignTimeline}, these measurements span several months containing 22 C-Mod plasma discharges, 1 disruption and 5 plasma wall conditioning operations.  The success of the intershot measurements and the success of the measurements of wall conditioning combined with the continuity of the measurements within uncertainty over a 1 month gap in operations provides a thorough demonstration of the capabilities of the AIMS technique and provides successful demonstration of AIMS as a first of a kind PMI diagnostic.
-
-\section{Conclusions}
+\section{Summary and Conclusions}
 
 The AIMS diagnostic was successfully implemented on Alcator C-Mod yielding the first spatial resolved and quantitative in-situ measurements of boron in a tokamak.  By combining AIMS neutron and gamma measurements, time resolved and spatially resolved measurements of boron were made, spanning the entire AIMS run campaign which included lower single null plasma shots, inboard limited plasma shots, a disruption, and C-Mod wall conditioning procedures.  These measurements demonstrated the capability if AIMS to perform inter-shot measurements at a single location and spatially resolved measurements on over longer timescales (with great potential for improved timescales and resolution).  This demonstration showed the first in-situ measurements of surfaces in a magnetic fusion device with spatial and temporal resolution which constitutes a major step forward in fusion PMI science.
 
-
 An external ion beam system was also implemented to perform ex-situ ion beam analysis (IBA) on large components removed from Alcator C-Mod.  This system was used to perform particle induced gamma emission (PIGE), a well established IBA technique, on tile modules to validate the AIMS technique.  From these external PIGE measurements, a spatially resolved map of boron areal density was constructed for a section of C-Mod inner wall tiles that overlapped with the AIMS measurement locations.  These measurements showed the complexity of the poloidal and toroidal variation of boron areal density between PFC tiles on the inner wall ranging from 0 to 3$\mu$m of boron.  Using these well characterized ex-situ measurements to corroborate the in-situ measurements, AIMS showed reasonable agreement with PIGE, thus validating the quantitative boron detection capability of the AIMS technique.
+
 
 \bibliography{AIMSBoronAnalysis.bib}{}
 \bibliographystyle{plain}
